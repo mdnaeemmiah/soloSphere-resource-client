@@ -57,7 +57,7 @@ const JobDetails = () => {
       const { data } = await axios.post('http://localhost:9000/bid', bidData)
       console.log(data);
       toast.success('bid success')
-    //   navigate('/my-bids')
+      navigate('/my-bids')
     } catch (err) {
       console.log(err);
     }

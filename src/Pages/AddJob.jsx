@@ -1,14 +1,16 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AuthContext } from "../Provider/AuthProvider";
+// import { AuthContext } from "../Provider/AuthProvider";
 import {  useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 
 const AddJob = () => {
-    const { user } = useContext(AuthContext);
+    // const { user } = useContext(AuthContext);
+    const {user} = useAuth()
     const navigate = useNavigate();
     const [startDate, setStartDate] = useState(new Date());
 
@@ -22,15 +24,18 @@ const AddJob = () => {
         const max_price =parseFloat(form.max_price.value)
         const description =form.description.value
         const deadline = startDate
+        // const status = 'pending'
+        // const price = parseFloat(form.price.value)
 
     const jobData = {
         job_title,
         max_price,
         min_price,
-        job_title,
         deadline,
         category,
         description,
+        // status,
+        // price,
         buyer:{
             email,
             name: user?.displayName,
